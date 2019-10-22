@@ -5,7 +5,7 @@ I went down the rabbit hole and spend most of my time focusing on the UI eg.
 scrolling , dragging and animation. Which means there properly some performance optimizations and refactoring to be done.
 
 Since it's a code challenge i tried to limit the amount of npm modules.
-But ofcourse that could have been a differet to route, to get further in a shorter amount of time. 
+But of course that could have been a different to route, to get further in a shorter amount of time. 
 
 The solution is mostly an example on how to handle scheduling in a calendar and not an answer to the scheduling flow we talked about last time.
 
