@@ -16,13 +16,6 @@ interface IDayOfWeek {
 }
 
 
-interface ISelection {
-	id:number;
-	startTime:Date;
-	endTime:Date;
-}
-
-
 
 const DayOfWeek: React.FC<IDayOfWeek> = ({dayWidth, slotsPerHour, day, minMaxMinutes, useStore}) => {
 
