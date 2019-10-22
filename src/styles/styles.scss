@@ -1,0 +1,52 @@
+
+@import "./bootstrap/variables.scss";
+@import "./bootstrap/components.scss";
+
+
+
+.pointer{
+    cursor: pointer;
+}
+
+
+.simple-shadow {
+    box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.15);
+}
+
+.selection-shadow{
+    box-shadow: 0px 4px 6px 3px rgba(0,0,0,0.1);
+}
+
+
+
+.n-resize {cursor: n-resize;}
+
+.grab {cursor: -webkit-grab; cursor: grab;}
+
+.back-image-contain {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.back-image-cover {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+
+
+

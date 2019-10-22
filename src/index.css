@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+body {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+
+    /*overflow-x: hidden;
+    overflow-y: hidden;*/
+}
+
+
+#root {
+    height: 100%;
+}
+
