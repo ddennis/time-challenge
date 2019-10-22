@@ -2,7 +2,7 @@
 #### My solution
 
 I went down the rabbit hole and spend most of my time focusing on the UI eg.
-scrolling , dragging and animation. Which means there properly some performance optimizations and refactoring to be done.npm
+scrolling , dragging and animation. Which means there properly some performance optimizations and refactoring to be done.
 
 The solution is mostly an example on how to handle scheduling in a calendar and not an answer to the scheduling flow we talked about last time.
 
