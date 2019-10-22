@@ -94,8 +94,7 @@ const SelectedTimeSlot: React.FC<SelectedTimeSlot> = ({startTime, useStore, dayW
 
 		const bookings = daysToRender[dayIndex].bookings || [];
 
-		console.log (" SelectedTimeSlot > snapYpos = " , snapYpos);
-		if(snapYpos < 100 ){
+		if(snapYpos < HOUR_HEIGHT ){
 			deleteSelection()
 			return
 		}
