@@ -80,7 +80,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 
 	// show some initial animation
 	useEffect( () => {
-		//setAni( { x: Math.round( 0 ),	y: Math.round( -75 ), config: {friction: 80, tension: 1000}})
+		setAni( { x: Math.round( 0 ),	y: Math.round( -75 ), config: {friction: 80, tension: 1000}})
 	} , []);
 
 	//
