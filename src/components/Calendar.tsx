@@ -108,13 +108,11 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 			//
 			if (!active) {
 
-				console.log (" Calendar > not active = " , xx);
 				const snapXpos: number = Math.round( Math.abs( xx ) / dayWidth );
 				setAni( {x: -(snapXpos * dayWidth), y: yy, config: {friction: 40, tension: 1200}} )
 				return [0, yy]
 			}
 
-			console.log (" Calendar > move = " );
 
 
 			// move calendar
@@ -127,8 +125,6 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 
 			const top:number = boundaries[0];
 			const bottom:number = boundaries[2];
-
-			console.log (" Calendar > wheel = " );
 
 			const yy:number = clamp( memo[1] + -(movement[1]), -top, bottom );
 			setAni( {x: memo[0], y: Math.round( yy ), config: {friction: 80, tension: 1000}} )

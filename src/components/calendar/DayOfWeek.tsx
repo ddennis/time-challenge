@@ -39,7 +39,6 @@ const DayOfWeek: React.FC<IDayOfWeek> = ({dayWidth, slotsPerHour, day, minMaxMin
 
 		if(last ){
 
-			console.log (" DayOfWeek > add = " );
 			const wasClick = Math.abs( movement[0] ) + Math.abs( movement[1] ) < 6;
 			if(wasClick ){
 				const slotIndex:number = args[0];
@@ -95,10 +94,6 @@ const DayOfWeek: React.FC<IDayOfWeek> = ({dayWidth, slotsPerHour, day, minMaxMin
 
 						return (
 							<div {...markBind(slotIndex, slotItem)} key={slotIndex} style={{height: HOUR_HEIGHT/slotItem, borderRight:`1px solid ${styles.borderColor}`,   borderBottom: slotIndex === slotsPerHour.length-1 ? `1px solid ${styles.borderColor}` :`0px solid ${styles.borderColor}` , borderTop: `1px solid rgba(217,219,222, ${!fullHour ? 1 :.5})`  }}>
-
-								{/*<div  className="w-100" style={{height:100  }} >
-
-								</div>*/}
 
 							</div>
 						)

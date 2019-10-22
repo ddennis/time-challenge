@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Calendar from "./components/Calendar";
 
 import bookings from "./model/bookings";
@@ -26,7 +25,7 @@ const App: React.FC = () => {
 				// set the width of each day based of either the window width or the amount of days to render
 				setDayWidth={(calendarWidth:number, daysToRender:number ):number => {
 					if(calendarWidth <= breakpoints.md  ){
-						return Math.round(calendarWidth / 3) // show five days
+						return Math.round(calendarWidth / 3) // show three days
 					}
 					return Math.round(calendarWidth / 5) // show five days
 				}}
