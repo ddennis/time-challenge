@@ -148,7 +148,9 @@ const SelectedTimeSlot: React.FC<SelectedTimeSlot> = ({startTime, useStore, dayW
 			  <div {...dragItem() } className="position-absolute w-100 grab" style={{background:"red", opacity:0, top:0, left:0, height:itemHeight-6}}></div>
 
 			  {selectionActive &&
-				  <div onClick={deleteItem} className="pointer position-absolute " style={{top:-2, right:5}}>x</div>
+				  <div onClick={deleteItem} className="pointer position-absolute " style={{zIndex:200, width:20, height:20, top:-2, right:-4}}>
+					  <h5>x</h5>
+				  </div>
 			  }
 
 			  <p className="text-truncate d-inline-block" style={{fontSize:14, paddingLeft:6, paddingTop:10}}>Your booking</p>
