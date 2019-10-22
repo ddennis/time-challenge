@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDrag} from "react-use-gesture";
 import {HOUR_HEIGHT, MINUTES_TO_PIXELS} from "../../utils/CONSTANTS";
 import {IStore} from "./Store";
@@ -28,14 +28,16 @@ const SelectedTimeSlot: React.FC<SelectedTimeSlot> = ({startTime, useStore, dayW
 		return {selectionActive: state.selectionActive, toggleSelection: state.toggleSelection}
 	} );
 
-
 	const [itemHeight, setItemHeight] = useState<number>( HOUR_HEIGHT*.5 );
-	const [itemPos, setItemPos] = useState ( [day.dayIndex * dayWidth , startPos] );
+	const [itemPos, setItemPos] = useState ( [(dayWidth * day.dayIndex )  , startPos] );
 
 	const deleteSelection = useStore( (state: IStore) => (state.deleteSelection) );
 	const snapYfactor = HOUR_HEIGHT/4;
 	const snapXfactor = dayWidth;
 
+	useEffect( () => {
+		setItemPos([(dayWidth * day.dayIndex )  , startPos])
+	}, [dayWidth])
 
 	const scaleBindDown = useDrag(({first, active ,movement,  memo = [itemPos[0], itemPos[1]]}) => {
 		const yy = Math.round ( memo[1] + movement[1] );
