@@ -4,15 +4,14 @@ import {DaysToRender} from "../../utils/days-to-render";
 
 interface HeaderDays {
 	daysToRender:DaysToRender[];
-	intervalContainerWidth:number;
 	dayWidth:number;
 }
 
 
-const HeaderDays: React.FC<HeaderDays> = ({daysToRender, intervalContainerWidth, dayWidth}) => {
+const HeaderDays: React.FC<HeaderDays> = ({daysToRender, dayWidth}) => {
   return (
 
-	  <div className="d-flex pl-0 pr-0 " >
+	  <>
 		  {
 			  daysToRender.map( (item, index) => {
 					  return (
@@ -37,7 +36,7 @@ const HeaderDays: React.FC<HeaderDays> = ({daysToRender, intervalContainerWidth,
 				  }
 			  )
 		  }
-	  </div>
+	  </>
   );
 };
 

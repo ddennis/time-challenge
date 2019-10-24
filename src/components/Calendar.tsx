@@ -162,20 +162,23 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 					setBoundaries( [top, 0, 0, left] );
 				}
 		}}	>
+
+
+
 			{({ measureRef }) => (
 
 			   <div ref={measureRef}  className="container-fluid h-100 w-100 pl-0 pr-0" >
 
-
+				   {/*-------- The header with dates and day names  ------*/}
 				   <div className="row w-100 pl-0 pr-0 mr-0 ml-0 " style={{}}>
-
-					   {/*-------- The header with dates and day names  ------*/}
-
-						   <animated.div className="col-12 pl-0 pr-0 d-flex position-relative " style={{zIndex: 100, x, marginLeft:intervalContainerWidth}}>
-							   <HeaderDays dayWidth={dayWidth} daysToRender={daysToRender} intervalContainerWidth={intervalContainerWidth}></HeaderDays>
+					   <div className="simple-shadow d-flex position-relative" style={{zIndex: 10, background: "white"}}>
+						   <animated.div className="col-12 pl-0 pr-0 d-flex " style={{x, marginLeft: intervalContainerWidth}}>
+							   <HeaderDays dayWidth={dayWidth} daysToRender={daysToRender}></HeaderDays>
 						   </animated.div>
-
+					   </div>
 				   </div>
+
+
 
 
 					<div className="row w-100 pl-0 pr-0 mr-0 ml-0 overflow-hidden" style={{}}>
@@ -203,7 +206,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 
 
 							   {/*The users selection*/}
-					{/*		   <div className="position-absolute h-100 w-100 " style={{pointerEvents:selectionActive && selection.length > 0 ? "auto": "none"}} >
+							   <div className="position-absolute h-100 w-100 " style={{pointerEvents:selectionActive && selection.length > 0 ? "auto": "none"}} >
 
 								   {selection.map( (item, index) => {
 									   const {startTime } = item;
@@ -213,12 +216,12 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 									   )
 								   })}
 
-								    Background while editing
+								    {/*Background while editing*/}
 								   <div onClick={deactiveSelection} className="position-absolute h-100 w-100 " style={{zIndex:0, display: selectionActive && selection.length > 0 ? "block" : "none",  opacity:.5, background:"rgba(0,0,0,.1)"}} >
 
 								   </div>
 
-							   </div>*/}
+							   </div>
 						   </animated.div>
 						</div>
 					   </div>
