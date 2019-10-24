@@ -7,10 +7,9 @@ import {FullDayTimeSlots} from "../../types/FullDayTimeSlots";
 
 interface ITimeIntervals {
 	renderedMinMaxMinutes:IRenderedMinMaxMinutes;
-	intervalContainerWidth:number;
 }
 
-const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes, intervalContainerWidth}) => {
+const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes}) => {
 
 
 	const blocked = [
@@ -20,7 +19,6 @@ const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes, interva
 
 
 	const fullDayTimeSlotsObj =  timeSlots.getTimeSlots(blocked, true);
-
 
 	const fullDayTimeSlots:FullDayTimeSlots[] = Object.keys(fullDayTimeSlotsObj).map((key) => {
 		return {min:Number(key), name:fullDayTimeSlotsObj[key]} ;
@@ -33,7 +31,7 @@ const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes, interva
 				fullDayTimeSlots.map( (item, index) => {
 					return (
 						<div key={index} className="d-flex" style={{height:HOUR_HEIGHT}} >
-							<p className="pr-2 pl-2 mb-0" style={{marginTop:-8, opacity:index === 0 ? 0 :1 , width:intervalContainerWidth ,  fontSize:11, color:"#888f97", letterSpacing: -.4}}>{item.name}</p>
+							<p className="pr-2 pl-2 mb-0" style={{marginTop:-8, opacity:index === 0 ? 0 :1 ,  fontSize:11, color:"#888f97", letterSpacing: -.4}}>{item.name}</p>
 
 							{/*little line showing with each time stamp*/}
 							<div className="w-100 clock-line" style={{height:HOUR_HEIGHT ,width:3, borderTop: `1px solid ${styles.borderColor}` }} ></div>

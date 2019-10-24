@@ -12,7 +12,7 @@ interface HeaderDays {
 const HeaderDays: React.FC<HeaderDays> = ({daysToRender, intervalContainerWidth, dayWidth}) => {
   return (
 
-	  <div className="d-flex pl-0 pr-0 "  style={{marginLeft:intervalContainerWidth }}>
+	  <div className="d-flex pl-0 pr-0 " >
 		  {
 			  daysToRender.map( (item, index) => {
 					  return (

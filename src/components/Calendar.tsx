@@ -47,7 +47,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 	//
 	// The width of left side with hourly timestamps
 	//
-	const intervalContainerWidth  = 50;
+	const intervalContainerWidth  = 100;
 
 	//
 	// Header height which contains date and day names
@@ -167,32 +167,29 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 			   <div ref={measureRef}  className="container-fluid h-100 w-100 pl-0 pr-0" >
 
 
-				   <div className="row w-100 pl-0 pr-0 mr-0 ml-0 overflow-hidden" style={{}}>
-
+				   <div className="row w-100 pl-0 pr-0 mr-0 ml-0 " style={{}}>
 
 					   {/*-------- The header with dates and day names  ------*/}
-					   <div className="col-12 pl-0 pr-0 position-relative simple-shadow" style={{height: dateHeaderHeight, zIndex:200, background:"white"}}>
 
-						   <div className="position-absolute" style={{zIndex: 210, top: 0, left: 0,  width: intervalContainerWidth - 1,  height: dateHeaderHeight, background: "white" }}></div>
-
-						   <animated.div className="d-flex justify-content-between position-relative " style={{zIndex: 200, height: dateHeaderHeight, x}}>
+						   <animated.div className="col-12 pl-0 pr-0 d-flex position-relative " style={{zIndex: 100, x, marginLeft:intervalContainerWidth}}>
 							   <HeaderDays dayWidth={dayWidth} daysToRender={daysToRender} intervalContainerWidth={intervalContainerWidth}></HeaderDays>
 						   </animated.div>
 
-					   </div>
+				   </div>
 
 
-					   <div className="col-12  pl-0 pr-0 ">
+					<div className="row w-100 pl-0 pr-0 mr-0 ml-0 overflow-hidden" style={{}}>
+					   <div className="col-12 d-flex pl-0 pr-0 ">
+
+						<div className="d-flex">
 
 						   {/* The time slots in the left side*/}
-						   <div className="position-relative " style={{zIndex: 100, top: 0, left: 0, width: intervalContainerWidth}}>
-							   <animated.div className="d-flex flex-column position-absolute  " style={{ borderRight: `1px solid ${styles.borderColor}`, width: intervalContainerWidth, background: "#f8f9fa", y }}>
-								   <TimeIntervals renderedMinMaxMinutes={renderedMinMaxMinutes} intervalContainerWidth={intervalContainerWidth}></TimeIntervals>
-							   </animated.div>
-						   </div>
+						   <animated.div className="" style={{width:intervalContainerWidth, zIndex:100, borderRight: `1px solid ${styles.borderColor}`, background: "#f8f9fa", y }}>
+							   <TimeIntervals renderedMinMaxMinutes={renderedMinMaxMinutes} ></TimeIntervals>
+						   </animated.div>
 
 
-						   <animated.div {...bind()} ref={calendarViewRef} className="d-flex noselect " style={{  width: daysToRender.length * dayWidth,zIndex: 1, overscrollBehavior: "none", marginLeft: intervalContainerWidth, x, y }}>
+						   <animated.div {...bind()} ref={calendarViewRef} className="d-flex noselect position-relative " style={{  zIndex: 1, overscrollBehavior: "none",  x, y }}>
 
 							   {/* Days - in the full height */}
 							   {
@@ -206,7 +203,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 
 
 							   {/*The users selection*/}
-							   <div className="position-absolute h-100 w-100 " style={{pointerEvents:selectionActive && selection.length > 0 ? "auto": "none"}} >
+					{/*		   <div className="position-absolute h-100 w-100 " style={{pointerEvents:selectionActive && selection.length > 0 ? "auto": "none"}} >
 
 								   {selection.map( (item, index) => {
 									   const {startTime } = item;
@@ -216,14 +213,14 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 									   )
 								   })}
 
-								   {/* Background while editing */}
+								    Background while editing
 								   <div onClick={deactiveSelection} className="position-absolute h-100 w-100 " style={{zIndex:0, display: selectionActive && selection.length > 0 ? "block" : "none",  opacity:.5, background:"rgba(0,0,0,.1)"}} >
 
 								   </div>
 
-							   </div>
+							   </div>*/}
 						   </animated.div>
-
+						</div>
 					   </div>
 				   </div>
 			   </div>
