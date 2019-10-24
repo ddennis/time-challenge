@@ -179,52 +179,51 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 				   </div>
 
 
-
-
 					<div className="row w-100 pl-0 pr-0 mr-0 ml-0 overflow-hidden" style={{}}>
-					   <div className="col-12 d-flex pl-0 pr-0 ">
+						<div className="col-12 d-flex pl-0 pr-0 ">
+							<div className="d-flex">
 
-						<div className="d-flex">
-
-						   {/* The time slots in the left side*/}
-						   <animated.div className="" style={{width:intervalContainerWidth, zIndex:100, borderRight: `1px solid ${styles.borderColor}`, background: "#f8f9fa", y }}>
-							   <TimeIntervals renderedMinMaxMinutes={renderedMinMaxMinutes} ></TimeIntervals>
-						   </animated.div>
-
-
-						   <animated.div {...bind()} ref={calendarViewRef} className="d-flex noselect position-relative " style={{  zIndex: 1, overscrollBehavior: "none",  x, y }}>
-
-							   {/* Days - in the full height */}
-							   {
-								   daysToRender.map( (day, index) => {
-										   return (
-											   <DayOfWeek key={index} day={day} useStore={useStore} minMaxMinutes={renderedMinMaxMinutes}  dayWidth={dayWidth} slotsPerHour={slotsPerHour}></DayOfWeek>
-										   )
-									   }
-								   )
-							   }
+							   {/* The time slots in the left side*/}
+							   <animated.div className="" style={{width:intervalContainerWidth, zIndex:100, borderRight: `1px solid ${styles.borderColor}`, background: "#f8f9fa", y }}>
+								   <TimeIntervals renderedMinMaxMinutes={renderedMinMaxMinutes} ></TimeIntervals>
+							   </animated.div>
 
 
-							   {/*The users selection*/}
-							   <div className="position-absolute h-100 w-100 " style={{pointerEvents:selectionActive && selection.length > 0 ? "auto": "none"}} >
+							   <animated.div {...bind()} ref={calendarViewRef} className="d-flex noselect position-relative " style={{  zIndex: 1, overscrollBehavior: "none",  x, y }}>
 
-								   {selection.map( (item, index) => {
-									   const {startTime } = item;
-
-									   return (
-										   <SelectedTimeSlot key={index} useStore={useStore} daysToRender={daysToRender} day={item.day} dayWidth={dayWidth} minMaxMinutes={renderedMinMaxMinutes} startTime={startTime} />
+								   {/* Days - in the full height */}
+								   {
+									   daysToRender.map( (day, index) => {
+											   return (
+												   <DayOfWeek key={index} day={day} useStore={useStore} minMaxMinutes={renderedMinMaxMinutes}  dayWidth={dayWidth} slotsPerHour={slotsPerHour}></DayOfWeek>
+											   )
+										   }
 									   )
-								   })}
+								   }
 
-								    {/*Background while editing*/}
-								   <div onClick={deactiveSelection} className="position-absolute h-100 w-100 " style={{zIndex:0, display: selectionActive && selection.length > 0 ? "block" : "none",  opacity:.5, background:"rgba(0,0,0,.1)"}} >
+
+
+
+								   {/*The users selection*/}
+								   <div className="position-absolute h-100 w-100 " style={{pointerEvents:selectionActive && selection.length > 0 ? "auto": "none"}} >
+
+									   {selection.map( (item, index) => {
+										   const {startTime } = item;
+
+										   return (
+											   <SelectedTimeSlot key={index} useStore={useStore} daysToRender={daysToRender} day={item.day} dayWidth={dayWidth} minMaxMinutes={renderedMinMaxMinutes} startTime={startTime} />
+										   )
+									   })}
+
+										{/*Background while editing*/}
+									   <div onClick={deactiveSelection} className="position-absolute h-100 w-100 " style={{zIndex:0, display: selectionActive && selection.length > 0 ? "block" : "none",  opacity:.5, background:"rgba(0,0,0,.1)"}} >
+
+									   </div>
 
 								   </div>
-
-							   </div>
-						   </animated.div>
+							   </animated.div>
+							</div>
 						</div>
-					   </div>
 				   </div>
 			   </div>
 			)}
