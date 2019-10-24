@@ -77,7 +77,7 @@ const SelectedTimeSlot: React.FC<SelectedTimeSlot> = ({startTime, useStore, dayW
 		}
 
 		if(!active ){
-			const snapXpos = Math.round( xx / snapXfactor );
+			const snapXpos = Math.max(0, Math.round( xx / snapXfactor ))
 			const snapYpos = Math.round( yy / snapYfactor );
 
 			setItemPos([snapXpos *snapXfactor, snapYpos *snapYfactor ]);
