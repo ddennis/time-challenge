@@ -47,7 +47,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 	//
 	// The width of left side with hourly timestamps
 	//
-	const intervalContainerWidth  = 100;
+	const intervalContainerWidth  = 50;
 
 	//
 	// Header height which contains date and day names
