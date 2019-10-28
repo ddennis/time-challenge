@@ -14,12 +14,11 @@ import clamp from 'lodash.clamp'
 import DayOfWeek from "./DayOfWeek";
 import SelectedTimeSlot from "./SelectedTimeSlot";
 import TimeIntervals from "./TimeIntervals";
-import HeaderDays from "./HeaderDays";
+
 
 
 // utils
 import {findAvailbleInterval} from "../../utils/preferences-parser";
-import {IPreferences} from "../../model/preferences";
 import {IBookings} from "../../types/Bookings";
 import {IAvailability } from "../../types/Availability";
 

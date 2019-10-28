@@ -1,7 +1,6 @@
 
 import {IBookings} from "../types/Bookings";
 import {ONE_DAY_IN_MILISECONDS} from "./CONSTANTS";
-import {IPreferences} from "../model/preferences";
 import {IAvailability} from "../types/Availability";
 
 

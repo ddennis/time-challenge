@@ -1,6 +1,4 @@
-import {IPreferences} from "../model/preferences";
 import {IAvailability} from "../types/Availability";
-
 
 export function findAvailbleInterval( availability:IAvailability[] ):{min:number, max:number} {
 
