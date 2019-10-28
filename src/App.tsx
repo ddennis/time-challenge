@@ -15,6 +15,7 @@ function generateBookingDateTime({ daysFromNow, hours }: {daysFromNow:number, ho
 const App: React.FC = () => {
 
 
+	// order does not matter
 	const bookings:IBookings[] = [
 		{
 			startTime: generateBookingDateTime({ daysFromNow: 1, hours: 10 }),
@@ -23,14 +24,18 @@ const App: React.FC = () => {
 		{
 			startTime: generateBookingDateTime({ daysFromNow: 2, hours: 13 }),
 			endTime: generateBookingDateTime({ daysFromNow: 2, hours: 15 })
-		}
+		},
+		{
+			startTime: generateBookingDateTime({ daysFromNow: 1, hours: 15 }),
+			endTime: generateBookingDateTime({ daysFromNow: 1, hours: 17 })
+		},
 	];
 
 
 	// We assume this is your avalibility for mon, tue, wen ...
 	const availability:IAvailability[] = [
 		{
-			startTimeInMinutes: 600,
+			startTimeInMinutes: 1000,
 			endTimeInMinutes: 1200
 		},
 		{

@@ -2,6 +2,7 @@
 import {IBookings} from "../types/Bookings";
 import {ONE_DAY_IN_MILISECONDS} from "./CONSTANTS";
 import {IPreferences} from "../model/preferences";
+import {IAvailability} from "../types/Availability";
 
 
 export interface DaysToRender {
@@ -15,15 +16,16 @@ export interface DaysToRender {
 
 
 
-export function findDaysToRender(currentDate:Date, dayNames:Array<string> , bookings:IBookings[], daysBoundaryMax:number ):DaysToRender[] {
+
+export function findDaysToRender(currentDate:Date, dayNames:Array<string> , bookings:IBookings[], daysBoundaryMax:number , availability:IAvailability[] ):DaysToRender[] {
 
 
 	const tempDaysArr:Array<Number> = Array(daysBoundaryMax ).fill(0);
 
+
 	//
 	// reset current date, so we can use it to calculate the next coming days
 	//
-
 	currentDate.setHours(0);
 	currentDate.setMinutes(0);
 	currentDate.setSeconds(1);
@@ -32,6 +34,8 @@ export function findDaysToRender(currentDate:Date, dayNames:Array<string> , book
 
 		currentDate.setDate(currentDate.getDate() + (index ? 1 : 0) );
 		const day = currentDate.getTime();
+		const dayIndex = currentDate.getDay();
+
 		const endDay = (day + ONE_DAY_IN_MILISECONDS);
 
 		const bookingInDay = bookings.filter((book) => {

@@ -32,6 +32,7 @@ import {DAY_NAMES, HOUR_HEIGHT, MINUTES_INTERVAL, styles} from "../../utils/CONS
 
 // Store
 import useStore, {ISelection, IStore} from './Store'
+import Header from "./Header";
 
 
 
@@ -44,7 +45,7 @@ interface ICalendar {
 }
 
 
-const Calendar: React.FC<ICalendar> = ({bookings, setDayWidth, totalDaysToRender, availability}) => {
+const Calendar: React.FC<ICalendar> = React.memo(({bookings, setDayWidth, totalDaysToRender, availability}) => {
 
 	const getDayWidth = setDayWidth ? setDayWidth : () => { return 100};
 
@@ -63,14 +64,15 @@ const Calendar: React.FC<ICalendar> = ({bookings, setDayWidth, totalDaysToRender
 	// For a better overview we show an hour before and after the defined interval
 	//
 	const minMaxTime = findAvailbleInterval( availability );
-	console.log (" Calendar > minMaxTime = " , minMaxTime);
 
 
 	const renderedMinMaxMinutes:IRenderedMinMaxMinutes = {min: minMaxTime.min - 60, max: minMaxTime.max + 60};
 	const slotsPerHour = Array((renderedMinMaxMinutes.max - renderedMinMaxMinutes.min )/MINUTES_INTERVAL ).fill(Math.round(60/MINUTES_INTERVAL ));
 
 	// The meat of the scheduling
-	const daysToRender:DaysToRender[] = findDaysToRender(new Date(), DAY_NAMES , bookings, totalDaysToRender )
+	const daysToRender:DaysToRender[] = findDaysToRender(new Date(), DAY_NAMES , bookings, totalDaysToRender, availability )
+
+
 
 	//
 	// Hooks
@@ -83,6 +85,8 @@ const Calendar: React.FC<ICalendar> = ({bookings, setDayWidth, totalDaysToRender
 	const {selectionActive, toggleSelection}:IStore = useStore<IStore>((state ) => {
 		return {selectionActive:state.selectionActive, toggleSelection:state.toggleSelection }
 	});
+
+
 
 
 	// show some initial animation
@@ -141,6 +145,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, setDayWidth, totalDaysToRender
 	} );
 
 
+
 	const deactiveSelection = () => {
 		if( toggleSelection && selectionActive){
 			toggleSelection(false)
@@ -178,14 +183,10 @@ const Calendar: React.FC<ICalendar> = ({bookings, setDayWidth, totalDaysToRender
 
 			   <div ref={measureRef}  className="container-fluid h-100 w-100 pl-0 pr-0" >
 
-				   {/*-------- The header with dates and day names  ------*/}
-				   <div className="row w-100 pl-0 pr-0 mr-0 ml-0 " style={{}}>
-					   <div className="simple-shadow d-flex position-relative" style={{zIndex: 10, background: "white"}}>
-						   <animated.div className="col-12 pl-0 pr-0 d-flex " style={{x, marginLeft: intervalContainerWidth}}>
-							   <HeaderDays dayWidth={dayWidth} daysToRender={daysToRender}></HeaderDays>
-						   </animated.div>
-					   </div>
-				   </div>
+
+
+				   <Header dayWidth={dayWidth} daysToRender={daysToRender} x={x} intervalContainerWidth={intervalContainerWidth}></Header>
+
 
 
 					<div className="row w-100 pl-0 pr-0 mr-0 ml-0 overflow-hidden" style={{}}>
@@ -208,8 +209,6 @@ const Calendar: React.FC<ICalendar> = ({bookings, setDayWidth, totalDaysToRender
 										   }
 									   )
 								   }
-
-
 
 
 								   {/*The users selection*/}
@@ -239,7 +238,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, setDayWidth, totalDaysToRender
 
 		</Measure>
 	);
-};
+});
 
 
 
