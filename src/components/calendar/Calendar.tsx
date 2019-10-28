@@ -11,36 +11,42 @@ import clamp from 'lodash.clamp'
 
 
 //calendar components
-import DayOfWeek from "./calendar/DayOfWeek";
-import SelectedTimeSlot from "./calendar/SelectedTimeSlot";
-import TimeIntervals from "./calendar/TimeIntervals";
-import HeaderDays from "./calendar/HeaderDays";
+import DayOfWeek from "./DayOfWeek";
+import SelectedTimeSlot from "./SelectedTimeSlot";
+import TimeIntervals from "./TimeIntervals";
+import HeaderDays from "./HeaderDays";
 
 
 // utils
-import {findAvailbleInterval} from "../utils/preferences-parser";
-import {IPreferences} from "../model/preferences";
-import {IBookings} from "../model/bookings";
+import {findAvailbleInterval} from "../../utils/preferences-parser";
+import {IPreferences} from "../../model/preferences";
+import {IBookings} from "../../types/Bookings";
+import {IAvailability } from "../../types/Availability";
 
 // types
-import {IRenderedMinMaxMinutes} from "../types/IRenderedMinMaxMinutes";
-import {DaysToRender, findDaysToRender} from "../utils/days-to-render";
+import {IRenderedMinMaxMinutes} from "../../types/IRenderedMinMaxMinutes";
+import {DaysToRender, findDaysToRender} from "../../utils/days-to-render";
 
 // const
-import {DAY_NAMES, HOUR_HEIGHT, styles} from "../utils/CONSTANTS";
+import {DAY_NAMES, HOUR_HEIGHT, styles} from "../../utils/CONSTANTS";
 
 // Store
-import useStore, {ISelection, IStore} from './calendar/Store'
+import useStore, {ISelection, IStore} from './Store'
+import DummyComp from "../DummyComp";
+import MyDummy from "../MyDummy";
+
 
 
 interface ICalendar {
 	bookings:Array<IBookings>;
+	availability:Array<IAvailability>;
+	totalDaysToRender:number;
 	preferences:IPreferences;
 	setDayWidth?:Function;
 }
 
 
-const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => {
+const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth, totalDaysToRender, availability}) => {
 
 	const getDayWidth = setDayWidth ? setDayWidth : () => { return 100};
 
@@ -63,7 +69,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 	const slotsPerHour = Array((renderedMinMaxMinutes.max - renderedMinMaxMinutes.min )/preferences.interval ).fill(Math.round(60/preferences.interval));
 
 	// The meat of the scheduling
-	const daysToRender:DaysToRender[] = findDaysToRender(new Date(), DAY_NAMES , bookings, preferences.fromTodayBoundary )
+	const daysToRender:DaysToRender[] = findDaysToRender(new Date(), DAY_NAMES , bookings, preferences )
 
 	//
 	// Hooks
@@ -82,6 +88,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 	useEffect( () => {
 		setAni( { x: Math.round( 0 ),	y: Math.round( -75 ), config: {friction: 80, tension: 1000}})
 	} , []);
+
 
 	//
 	// handle dragging the calenderview
@@ -109,7 +116,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 			if (!active) {
 
 				const snapXpos: number = Math.round( Math.abs( xx ) / dayWidth );
-				setAni( {x: -(snapXpos * dayWidth), y: yy, config: {friction: 40, tension: 1200}} )
+				setAni( {x: -(snapXpos * dayWidth), y: yy, config: {friction: 40, tension: 1000}} )
 				return [0, yy]
 			}
 
@@ -138,6 +145,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 			toggleSelection(false)
 		}
 	};
+
 
 
 	return (
@@ -183,10 +191,9 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 						<div className="col-12 d-flex pl-0 pr-0 ">
 							<div className="d-flex">
 
-							   {/* The time slots in the left side*/}
-							   <animated.div className="" style={{width:intervalContainerWidth, zIndex:100, borderRight: `1px solid ${styles.borderColor}`, background: "#f8f9fa", y }}>
-								   <TimeIntervals renderedMinMaxMinutes={renderedMinMaxMinutes} ></TimeIntervals>
-							   </animated.div>
+
+								<TimeIntervals intervalContainerWidth={intervalContainerWidth} aniStyle={{y}} renderedMinMaxMinutes={renderedMinMaxMinutes} ></TimeIntervals>
+
 
 
 							   <animated.div {...bind()} ref={calendarViewRef} className="d-flex noselect position-relative " style={{  zIndex: 1, overscrollBehavior: "none",  x, y }}>
@@ -216,7 +223,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth}) => 
 									   })}
 
 										{/*Background while editing*/}
-									   <div onClick={deactiveSelection} className="position-absolute h-100 w-100 " style={{zIndex:0, display: selectionActive && selection.length > 0 ? "block" : "none",  opacity:.5, background:"rgba(0,0,0,.1)"}} >
+									   <div onClick={deactiveSelection} className="position-absolute h-100 w-100 " style={{zIndex:0, display: selectionActive && selection.length > 0 ? "block" : "none",  background:"rgba(0,0,0,.2)"}} >
 
 									   </div>
 

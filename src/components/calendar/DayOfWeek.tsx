@@ -65,7 +65,7 @@ const DayOfWeek: React.FC<IDayOfWeek> = ({dayWidth, slotsPerHour, day, minMaxMin
 
 				{bookings.map((item, index) => {
 
-					const {startTime, endTime , id } = item;
+					const {startTime, endTime } = item;
 
 					const startHours = Math.round( ((startTime.getHours() * 60) - minMaxMinutes.min) * MINUTES_TO_PIXELS)
 					const startMinutes = startTime.getMinutes() *MINUTES_TO_PIXELS;
@@ -75,7 +75,7 @@ const DayOfWeek: React.FC<IDayOfWeek> = ({dayWidth, slotsPerHour, day, minMaxMin
 
 
 					return (
-						<BookingItem key={id} dayWidth={dayWidth} startPos={startPos} bookingHeight={bookingHeight}></BookingItem>
+						<BookingItem key={index} dayWidth={dayWidth} startPos={startPos} bookingHeight={bookingHeight}></BookingItem>
 					)
 
 				})}

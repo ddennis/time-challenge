@@ -11,12 +11,8 @@ export function generateBookingDateTime({ daysFromNow, hours }: IParams): Date {
 
 
 export interface IBookings {
-
-    id: number;
-    createTime: Date;
     startTime: Date
     endTime: Date
-
 }
 
 export default [

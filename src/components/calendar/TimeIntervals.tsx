@@ -7,10 +7,11 @@ import {FullDayTimeSlots} from "../../types/FullDayTimeSlots";
 
 interface ITimeIntervals {
 	renderedMinMaxMinutes:IRenderedMinMaxMinutes;
+	intervalContainerWidth:number;
+	aniStyle:any;
 }
 
-const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes}) => {
-
+const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes, intervalContainerWidth, aniStyle}) => {
 
 	const blocked = [
 		[0, renderedMinMaxMinutes.min - 60 ],
@@ -26,7 +27,7 @@ const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes}) => {
 
 	return (
 
-		<>
+		<div style={{width:intervalContainerWidth, zIndex:100, borderRight: `1px solid ${styles.borderColor}`, background: "#f8f9fa", ...aniStyle }} >
 			{
 				fullDayTimeSlots.map( (item, index) => {
 					return (
@@ -40,7 +41,7 @@ const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes}) => {
 					)
 				})
 			}
-		</>
+		</div>
 	)
 
 };

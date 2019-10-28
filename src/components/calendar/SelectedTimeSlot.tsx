@@ -92,7 +92,7 @@ const SelectedTimeSlot: React.FC<SelectedTimeSlot> = ({startTime, useStore, dayW
 	});
 
 
-	const validateDropPosition = (dayIndex:number,snapYpos:number ) => {
+	const validateDropPosition = (dayIndex:number, snapYpos:number ) => {
 
 		const bookings = daysToRender[dayIndex].bookings || [];
 
