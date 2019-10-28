@@ -27,7 +27,12 @@ const App: React.FC = () => {
 	];
 
 
+	// We assume this is your avalibility for mon, tue, wen ...
 	const availability:IAvailability[] = [
+		{
+			startTimeInMinutes: 600,
+			endTimeInMinutes: 1200
+		},
 		{
 			startTimeInMinutes: 600,
 			endTimeInMinutes: 1200
@@ -55,11 +60,11 @@ const App: React.FC = () => {
 	];
 
 
+
 	return (
 
 			<Calendar
 				bookings={bookings}
-				preferences={preferences}
 				availability={availability}
 				totalDaysToRender={10}
 

@@ -28,12 +28,10 @@ import {IRenderedMinMaxMinutes} from "../../types/IRenderedMinMaxMinutes";
 import {DaysToRender, findDaysToRender} from "../../utils/days-to-render";
 
 // const
-import {DAY_NAMES, HOUR_HEIGHT, styles} from "../../utils/CONSTANTS";
+import {DAY_NAMES, HOUR_HEIGHT, MINUTES_INTERVAL, styles} from "../../utils/CONSTANTS";
 
 // Store
 import useStore, {ISelection, IStore} from './Store'
-import DummyComp from "../DummyComp";
-import MyDummy from "../MyDummy";
 
 
 
@@ -41,12 +39,12 @@ interface ICalendar {
 	bookings:Array<IBookings>;
 	availability:Array<IAvailability>;
 	totalDaysToRender:number;
-	preferences:IPreferences;
+
 	setDayWidth?:Function;
 }
 
 
-const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth, totalDaysToRender, availability}) => {
+const Calendar: React.FC<ICalendar> = ({bookings, setDayWidth, totalDaysToRender, availability}) => {
 
 	const getDayWidth = setDayWidth ? setDayWidth : () => { return 100};
 
@@ -61,15 +59,18 @@ const Calendar: React.FC<ICalendar> = ({bookings, preferences, setDayWidth, tota
 	const dateHeaderHeight = 76;
 
 	//
-	// based on preferences, get the earlist and latest time which need to be shown
+	// based on availability, get the earlist and latest time which need to be shown
 	// For a better overview we show an hour before and after the defined interval
 	//
-	const minMaxTime = findAvailbleInterval( preferences );
+	const minMaxTime = findAvailbleInterval( availability );
+	console.log (" Calendar > minMaxTime = " , minMaxTime);
+
+
 	const renderedMinMaxMinutes:IRenderedMinMaxMinutes = {min: minMaxTime.min - 60, max: minMaxTime.max + 60};
-	const slotsPerHour = Array((renderedMinMaxMinutes.max - renderedMinMaxMinutes.min )/preferences.interval ).fill(Math.round(60/preferences.interval));
+	const slotsPerHour = Array((renderedMinMaxMinutes.max - renderedMinMaxMinutes.min )/MINUTES_INTERVAL ).fill(Math.round(60/MINUTES_INTERVAL ));
 
 	// The meat of the scheduling
-	const daysToRender:DaysToRender[] = findDaysToRender(new Date(), DAY_NAMES , bookings, preferences )
+	const daysToRender:DaysToRender[] = findDaysToRender(new Date(), DAY_NAMES , bookings, totalDaysToRender )
 
 	//
 	// Hooks
