@@ -1,9 +1,7 @@
 import React from "react";
 import Calendar from "./components/calendar/Calendar";
-import preferences from "./model/preferences";
 import {IBookings} from "./types/Bookings";
 import {IAvailability} from "./types/Availability";
-
 
 
 function generateBookingDateTime({ daysFromNow, hours }: {daysFromNow:number, hours:number}): Date {
