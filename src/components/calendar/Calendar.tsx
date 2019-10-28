@@ -193,7 +193,7 @@ const Calendar: React.FC<ICalendar> = ({bookings, setDayWidth, totalDaysToRender
 							<div className="d-flex">
 
 
-								<TimeIntervals intervalContainerWidth={intervalContainerWidth} aniStyle={{y}} renderedMinMaxMinutes={renderedMinMaxMinutes} ></TimeIntervals>
+								<TimeIntervals intervalContainerWidth={intervalContainerWidth} y={y} renderedMinMaxMinutes={renderedMinMaxMinutes} ></TimeIntervals>
 
 
 

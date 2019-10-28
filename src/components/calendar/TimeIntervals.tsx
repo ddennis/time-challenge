@@ -3,15 +3,17 @@ import {HOUR_HEIGHT, styles} from "../../utils/CONSTANTS";
 import {IRenderedMinMaxMinutes} from "../../types/IRenderedMinMaxMinutes";
 import timeSlots from "time-slots-generator";
 import {FullDayTimeSlots} from "../../types/FullDayTimeSlots";
+import { animated} from "react-spring";
+
 
 
 interface ITimeIntervals {
 	renderedMinMaxMinutes:IRenderedMinMaxMinutes;
 	intervalContainerWidth:number;
-	aniStyle:any;
+	y:any;
 }
 
-const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes, intervalContainerWidth, aniStyle}) => {
+const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes, intervalContainerWidth, y}) => {
 
 	const blocked = [
 		[0, renderedMinMaxMinutes.min - 60 ],
@@ -25,9 +27,11 @@ const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes, interva
 		return {min:Number(key), name:fullDayTimeSlotsObj[key]} ;
 	});
 
+
 	return (
 
-		<div style={{width:intervalContainerWidth, zIndex:100, borderRight: `1px solid ${styles.borderColor}`, background: "#f8f9fa", ...aniStyle }} >
+		<animated.div style={{width:intervalContainerWidth, zIndex:100, borderRight: `1px solid ${styles.borderColor}`, background: "#f8f9fa", y }} >
+
 			{
 				fullDayTimeSlots.map( (item, index) => {
 					return (
@@ -41,7 +45,7 @@ const TimeIntervals: React.FC<ITimeIntervals> = ({renderedMinMaxMinutes, interva
 					)
 				})
 			}
-		</div>
+		</animated.div>
 	)
 
 };
