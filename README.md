@@ -1,6 +1,14 @@
 
 ## Work in progress - Building a simple Calender with basic scheduling
 
+### TODO
+[] cleaner separations of components 
+[] add days be be renderes as renders props from outside 
+[] better hit detection
+[] limit rerenders
+[] dont render hour slots as components and the X,y hit detection to determin selected time 
+[] clean up graphics
+[] added view for calendar details...
 
 
 #### Libaries used:
