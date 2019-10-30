@@ -28,8 +28,6 @@ const DayOfWeek: React.FC<IDayOfWeek> = ({dayWidth, slotsPerHour, day, minMaxMin
 
 	// when a use tries to add a selection
 	const markBind = useDrag(({last,movement, args}) => {
-
-
 		if(last ){
 
 			const wasClick = Math.abs( movement[0] ) + Math.abs( movement[1] ) < 6;
@@ -58,7 +56,7 @@ const DayOfWeek: React.FC<IDayOfWeek> = ({dayWidth, slotsPerHour, day, minMaxMin
 
 	return (
 
-		<div className="m-0 position-relative  " style={{width: dayWidth }}>
+		<div className="m-0 position-relative  " style={{zIndex:0, width: dayWidth }}>
 
 				{/*We are rendering the hour before avallibility starts - */}
 				<BookingItem dayWidth={dayWidth} bookingHeight={HOUR_HEIGHT}></BookingItem>

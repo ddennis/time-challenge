@@ -140,9 +140,13 @@ const SelectedTimeSlot: React.FC<SelectedTimeSlot> = ({startTime, useStore, dayW
 		deleteSelection()
 	}
 
+	const padding = 10;
+	const invertColor = selectionActive ? "#FFFFFF" : "#382eff";
+	const txtColor = !selectionActive ? "#FFFFFF" : "#0000FF";
+	const hasShadow = selectionActive ? "selection-shadow" : ""
 
   return (
-	  <div className="position-absolute selection-shadow " onClick={activateSelection} style={{zIndex:100, borderRadius:3, width:dayWidth, background:"#50db64",  top:0, left:0, height:itemHeight , transform:`translate3d( ${itemPos[0]}px ,${itemPos[1]}px ,0)`}}>
+	  <div className={`position-absolute ${hasShadow}`} onClick={activateSelection} style={{zIndex:100, borderRadius:5, width:dayWidth - padding , border:"3px solid #0000ff",  background:invertColor,  top:padding*.5 , left:padding*.5 , height:itemHeight -padding , transform:`translate3d( ${itemPos[0]}px ,${itemPos[1]}px ,0)`}}>
 
 		  <div className="position-relative">
 
@@ -154,18 +158,27 @@ const SelectedTimeSlot: React.FC<SelectedTimeSlot> = ({startTime, useStore, dayW
 				  </div>
 			  }
 
-			  <p className="text-truncate d-inline-block" style={{fontSize:14, paddingLeft:6, paddingTop:10}}>Your booking</p>
+			  <p className="text-truncate d-inline-block" style={{color:txtColor, fontSize:14, paddingLeft:6, paddingTop:10}}>Your booking</p>
 
 
 		  </div>
 
 		  {/* Show dragging handle */}
 		  {selectionActive &&
-			  <div {...scaleBindDown()} className="n-resize rounded-circle position-absolute " style={{background:"#50db64",bottom:-10, right:20, width:30, height:30}}>
-				  <div className="" style={{width:20, height:20, paddingTop:13, paddingLeft:7}}>
+			  <div {...scaleBindDown()} className="n-resize position-absolute w-100 d-flex justify-content-end" style={{ bottom:-22, left:0, height:30}}>
+
+				 <div className="n-resize rounded-circle mr-3 " style={{background:"white", border:"3px solid #0000ff", width:18, height:18}}>
+
+				  {/*<div className="" style={{width:20, height:20, paddingTop:13, paddingLeft:7}}>
 						  <div style={{width:15,marginBottom:2, height:1, background:"black"}}></div>
 						  <div style={{width:15, height:1, background:"black"}}></div>
-				  </div>
+				  </div>*/}
+
+				  {/*<div className="" style={{width:20, height:20, paddingTop:13, paddingLeft:7}}>
+						  <div style={{width:15,marginBottom:2, height:1, background:"black"}}></div>
+						  <div style={{width:15, height:1, background:"black"}}></div>
+				  </div>*/}
+			  	</div>
 			  </div>
 		  }
 

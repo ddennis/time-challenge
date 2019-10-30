@@ -78,6 +78,9 @@ const App: React.FC = () => {
 					}
 					return Math.round(calendarWidth / 5) // show five days
 				}}
+
+
+
 			/>
 
 

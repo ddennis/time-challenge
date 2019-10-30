@@ -22,6 +22,6 @@ interface IStyles {
 export const styles:IStyles = {
 
 	borderColor:"#d9dbde",
-	blue:"#0000ff"
+	blue:"#382eff"
 
 }

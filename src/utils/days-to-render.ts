@@ -31,17 +31,32 @@ export function findDaysToRender(currentDate:Date, dayNames:Array<string> , book
 
 	const daysToRender:DaysToRender[] = tempDaysArr.map( (item, index) => {
 
+
 		currentDate.setDate(currentDate.getDate() + (index ? 1 : 0) );
 		const day = currentDate.getTime();
+
 		const dayIndex = currentDate.getDay();
+		const dayStartTime = availability[dayIndex].startTimeInMinutes;
+		const dayEndTime = availability[dayIndex].endTimeInMinutes;
 
 		const endDay = (day + ONE_DAY_IN_MILISECONDS);
 
-		const bookingInDay = bookings.filter((book) => {
+		// TODO -  We should handle overlapping booking times - and render them as one
+
+		const bookingsInDay = bookings.filter((book) => {
 			return book.startTime.getTime() > day && book.endTime.getTime() < endDay;
 		});
 
-		return {dayName:dayNames[currentDate.getDay()], dayIndex:index,  date:currentDate.getDate() , bookings:bookingInDay }
+		// TODO -  handle end and start time for each day
+
+		return {
+			dayName: dayNames[currentDate.getDay()],
+			dayIndex: index,
+			dayStartTime: dayStartTime,
+			dayEndTime: dayEndTime,
+			date: currentDate.getDate(),
+			bookings: bookingsInDay
+		}
 	});
 
 	return daysToRender
