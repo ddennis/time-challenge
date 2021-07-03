@@ -1,6 +1,9 @@
 
 ## Work in progress - Building a simple Calender with basic scheduling
 
+### demo
+https://ddennis.dk/kunder/anna/
+
 ### TODO
 - [ ] cleaner separations of components 
 - [ ] add days be be renderes as renders props from outside 
